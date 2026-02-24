@@ -1,0 +1,53 @@
+{
+  "name": "canghe-skills",
+  "owner": {
+    "name": "freestylefly (苍何)",
+    "email": "canghe0818@gmail.com"
+  },
+  "metadata": {
+    "description": "Skills shared by  canghe for improving daily work efficiency",
+    "version": "1.34.1"
+  },
+  "plugins": [
+    {
+      "name": "content-skills",
+      "description": "Content generation and publishing skills",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/canghe-xhs-images",
+        "./skills/canghe-post-to-x",
+        "./skills/canghe-post-to-wechat",
+        "./skills/canghe-article-illustrator",
+        "./skills/canghe-cover-image",
+        "./skills/canghe-slide-deck",
+        "./skills/canghe-comic",
+        "./skills/canghe-infographic"
+      ]
+    },
+    {
+      "name": "ai-generation-skills",
+      "description": "AI-powered generation backends",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/canghe-danger-gemini-web",
+        "./skills/canghe-image-gen"
+      ]
+    },
+    {
+      "name": "utility-skills",
+      "description": "Utility tools for content processing",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/canghe-danger-x-to-markdown",
+        "./skills/canghe-compress-image",
+        "./skills/canghe-url-to-markdown",
+        "./skills/canghe-format-markdown",
+        "./skills/canghe-markdown-to-html",
+        "./skills/canghe-wechat-article-extractor"
+      ]
+    }
+  ]
+}
