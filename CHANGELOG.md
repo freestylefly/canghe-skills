@@ -2,6 +2,22 @@
 
 English | [中文](./CHANGELOG.zh.md)
 
+## 1.36.0 - 2026-03-01
+
+### Refactor
+- **Common**: Add unified environment variable loading module (`skills/common/env_utils.py`) with consistent priority: `process.env` > `<cwd>/.canghe-skills/.env` > `~/.canghe-skills/.env`
+- **canghe-seedance-video**: Remove hardcoded default API key, use `require_env_key()` from env_utils
+- **canghe-manga-style-video**: Remove hardcoded default API key, use `require_env_key()` from env_utils
+- **canghe-manga-drama**: Rewrite `seedance_video.py` to use direct API calls instead of SDK, avoiding SDK dependency issues
+- **All video skills**: Unify API key management using `ARK_API_KEY` with `SEEDANCE_API_KEY` alias
+
+### Documentation
+- **README.md**, **README.zh.md**: Add test cases for `canghe-manga-drama` with preview images and video links
+- **.canghe-skills/.env.example**: Add detailed comments explaining which skills use each API key
+
+### Assets
+- Add manga drama test videos and previews: `screenshots/manga-drama/scene_1-introduction.mp4`, `screenshots/manga-drama/scene_2-action.mp4`, `screenshots/manga-drama/scene_3-emotion.mp4`
+
 ## 1.35.0 - 2026-03-01
 
 ### Features

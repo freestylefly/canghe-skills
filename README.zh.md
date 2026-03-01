@@ -572,6 +572,15 @@ WECHAT_APP_SECRET=你的AppSecret
 
 **内置分镜类型**：`introduction`（主角登场）、`action`（动作场景）、`emotion`（情感表达）、`interaction`（互动场景）、`ending`（结尾定格）
 
+**测试用例**:
+- 主题: "樱花树下的少女"
+- 主角图片: [sakura-girl-preview.png](./screenshots/manga-style-video/sakura-girl-preview.png)
+- 分镜数: 3
+- 输出:
+  - 分镜1 (主角登场): [![scene_1-introduction](./screenshots/manga-drama/scene_617-preview.png)](./screenshots/manga-drama/scene_1-introduction.mp4)
+  - 分镜2 (动作场景): [![scene_2-action](./screenshots/manga-drama/scene_552-preview.png)](./screenshots/manga-drama/scene_2-action.mp4)
+  - 分镜3 (情感表达): [![scene_3-emotion](./screenshots/manga-drama/scene_448-preview.png)](./screenshots/manga-drama/scene_3-emotion.mp4)
+
 #### canghe-manga-style-video
 
 漫画风格视频生成器 - 专门生成日式治愈系、国风水墨、美式卡通等漫画风格的动画视频。内置 8 种漫画风格模板，支持图生视频。

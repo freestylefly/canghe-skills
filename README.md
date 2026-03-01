@@ -572,6 +572,15 @@ Manga drama generator - creates comic-style short dramas based on Seedance. Supp
 
 **Built-in Scene Types**: `introduction` (character entry), `action` (action scene), `emotion` (emotion expression), `interaction` (interaction scene), `ending` (closing shot)
 
+**Test Case**:
+- Theme: "Girl Under Cherry Blossom Tree"
+- Character image: [sakura-girl-preview.png](./screenshots/manga-style-video/sakura-girl-preview.png)
+- Scenes: 3
+- Output:
+  - Scene 1 (Introduction): [![scene_1-introduction](./screenshots/manga-drama/scene_617-preview.png)](./screenshots/manga-drama/scene_1-introduction.mp4)
+  - Scene 2 (Action): [![scene_2-action](./screenshots/manga-drama/scene_552-preview.png)](./screenshots/manga-drama/scene_2-action.mp4)
+  - Scene 3 (Emotion): [![scene_3-emotion](./screenshots/manga-drama/scene_448-preview.png)](./screenshots/manga-drama/scene_3-emotion.mp4)
+
 #### canghe-manga-style-video
 
 Manga-style video generator - specialized in generating anime-style animated videos. 8 built-in manga style templates, supports image-to-video.

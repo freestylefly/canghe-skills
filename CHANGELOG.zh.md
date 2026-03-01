@@ -2,6 +2,26 @@
 
 [English](./CHANGELOG.md) | 中文
 
+## 1.36.0 - 2026-03-01
+
+### 重构
+- **所有视频技能**：统一 API Key 管理方式，移除硬编码默认值，新增 `common/env_utils.py` 模块统一加载环境变量
+  - 加载优先级：`process.env` > `<cwd>/.canghe-skills/.env` > `~/.canghe-skills/.env`
+  - 支持 `ARK_API_KEY` 和 `SEEDANCE_API_KEY` 别名
+  - 新增 `.env.example` 配置模板
+- `canghe-manga-drama`：`seedance_video.py` 完全重写，使用直接 API 调用替代 SDK，避免 `volcengine-python-sdk` 依赖
+
+### 新功能
+- `canghe-manga-drama`：新增视频下载功能，使用 curl 下载生成的视频，避免 Python SSL 问题
+
+### 文档
+- `README.md`、`README.zh.md`：新增 manga-style-video 测试用例，包含樱花少女视频预览图和提示词
+- `README.md`、`README.zh.md`：新增漫剧生成示例，展示基于樱花少女图片生成的 3 个分镜视频
+
+### 示例
+- 新增樱花少女动漫风格视频（吉卜力风格，10秒，16:9，1080p）
+- 新增樱花少女漫剧短剧（3个分镜）
+
 ## 1.35.0 - 2026-03-01
 
 ### 新功能

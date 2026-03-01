@@ -1,0 +1,35 @@
+{
+  "title": "漫剧-樱花树下的少女",
+  "character": "图片中的主角（基于文件名: sakura-girl-preview）",
+  "style": "漫画风格",
+  "total_scenes": 3,
+  "scenes": [
+    {
+      "scene_number": 1,
+      "type": "introduction",
+      "name": "主角登场",
+      "prompt": "樱花树下的少女主题，图片中的主角（基于文件名: sakura-girl-preview）站在画面中央，微笑看向镜头，背景是柔和的光晕，漫画风格，温馨氛围，漫画风格，手绘质感，柔和的色彩过渡，线条清晰，日式或国漫风格，温馨治愈，电影级构图，高细节",
+      "duration": 5,
+      "ratio": "9:16",
+      "resolution": "1080p"
+    },
+    {
+      "scene_number": 2,
+      "type": "action",
+      "name": "动作场景",
+      "prompt": "樱花树下的少女主题，图片中的主角（基于文件名: sakura-girl-preview）正在进行日常活动，表情生动，动作流畅，漫画风格，漫画风格，手绘质感，柔和的色彩过渡，线条清晰，日式或国漫风格，温馨治愈，电影级构图，高细节",
+      "duration": 5,
+      "ratio": "9:16",
+      "resolution": "1080p"
+    },
+    {
+      "scene_number": 3,
+      "type": "emotion",
+      "name": "情感表达",
+      "prompt": "樱花树下的少女主题，图片中的主角（基于文件名: sakura-girl-preview）露出开心的表情，眼神传达情感，漫画风格，漫画风格，手绘质感，柔和的色彩过渡，线条清晰，日式或国漫风格，温馨治愈，电影级构图，高细节",
+      "duration": 5,
+      "ratio": "9:16",
+      "resolution": "1080p"
+    }
+  ]
+}
