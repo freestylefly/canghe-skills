@@ -2,6 +2,17 @@
 
 English | [中文](./CHANGELOG.zh.md)
 
+## 1.35.0 - 2026-03-01
+
+### Features
+- `canghe-manga-drama`: Add manga drama generator skill - creates comic-style short dramas based on Seedance, with automatic storyboard script generation using a character image as base
+- `canghe-manga-style-video`: Add manga-style video generator skill - specialized in generating anime-style animated videos with 8 built-in manga style templates
+- `canghe-seedance-video`: Add Seedance video generation skill - uses ByteDance Seedance models for text-to-video and image-to-video generation with multiple model options
+- `canghe-volcengine-video-understanding`: Add Volcengine video understanding skill - analyzes video content using Volcengine Ark API, supports video uploads up to 512MB
+
+### Documentation
+- `README.md`, `README.zh.md`: Add documentation for all 4 new skills
+
 ## 1.34.1 - 2026-02-20
 
 ### Fixes

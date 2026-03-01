@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Skills shared by  canghe for improving daily work efficiency",
-    "version": "1.34.1"
+    "version": "1.35.0"
   },
   "plugins": [
     {
@@ -22,7 +22,9 @@
         "./skills/canghe-cover-image",
         "./skills/canghe-slide-deck",
         "./skills/canghe-comic",
-        "./skills/canghe-infographic"
+        "./skills/canghe-infographic",
+        "./skills/canghe-manga-drama",
+        "./skills/canghe-manga-style-video"
       ]
     },
     {
@@ -32,7 +34,8 @@
       "strict": false,
       "skills": [
         "./skills/canghe-danger-gemini-web",
-        "./skills/canghe-image-gen"
+        "./skills/canghe-image-gen",
+        "./skills/canghe-seedance-video"
       ]
     },
     {
@@ -46,7 +49,8 @@
         "./skills/canghe-url-to-markdown",
         "./skills/canghe-format-markdown",
         "./skills/canghe-markdown-to-html",
-        "./skills/canghe-wechat-article-extractor"
+        "./skills/canghe-wechat-article-extractor",
+        "./skills/canghe-volcengine-video-understanding"
       ]
     }
   ]

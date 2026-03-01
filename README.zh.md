@@ -53,9 +53,9 @@ npx skills add freestylefly/canghe-skills
 
 | 插件 | 说明 | 包含技能 |
 |------|------|----------|
-| **content-skills** | 内容生成和发布 | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat) |
-| **ai-generation-skills** | AI 生成后端 | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web) |
-| **utility-skills** | 内容处理工具 | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator) |
+| **content-skills** | 内容生成和发布 | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat), [manga-drama](#canghe-manga-drama), [manga-style-video](#canghe-manga-style-video) |
+| **ai-generation-skills** | AI 生成后端 | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video) |
+| **utility-skills** | 内容处理工具 | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding) |
 
 ## 更新技能
 
@@ -558,6 +558,47 @@ WECHAT_APP_SECRET=你的AppSecret
 
 **浏览器方式**（无需 API 配置）：需已安装 Google Chrome，首次运行需扫码登录（登录状态会保存）
 
+#### canghe-manga-drama
+
+漫剧生成器 - 基于 Seedance 的漫画风格短剧生成工具。支持以主角图片为基础，自动生成漫剧分镜脚本并生成视频。
+
+```bash
+# 使用主角图片生成漫剧
+/canghe-manga-drama generate --image /path/to/character.png --theme "校园日常" --scenes 3
+
+# 从自定义脚本生成
+/canghe-manga-drama from-script --script my_drama.json --image /path/to/character.png
+```
+
+**内置分镜类型**：`introduction`（主角登场）、`action`（动作场景）、`emotion`（情感表达）、`interaction`（互动场景）、`ending`（结尾定格）
+
+#### canghe-manga-style-video
+
+漫画风格视频生成器 - 专门生成日式治愈系、国风水墨、美式卡通等漫画风格的动画视频。内置 8 种漫画风格模板，支持图生视频。
+
+```bash
+# 基础生成（日式风格）
+/canghe-manga-style-video "女孩在樱花树下读书"
+
+# 指定风格
+/canghe-manga-style-video "山水意境" --style chinese
+/canghe-manga-style-video "可爱小动物" --style cartoon
+/canghe-manga-style-video "乡村风景" --style ghibli
+
+# 带参考图片
+/canghe-manga-style-video "奶奶在包饺子" --style japanese --image ~/Desktop/character.png
+```
+
+**8 种漫画风格**：
+- `japanese` - 日式治愈系（默认）
+- `ghibli` - 吉卜力风格
+- `chinese` - 国风水墨
+- `cartoon` - 美式卡通
+- `sketch` - 铅笔素描
+- `watercolor` - 水彩手绘
+- `manga_comic` - 日式漫画
+- `chibi` - Q版萌系
+
 ### AI 生成技能 (AI Generation Skills)
 
 AI 驱动的生成后端。
@@ -634,6 +675,31 @@ AI 驱动的生成后端。
 /canghe-danger-gemini-web --prompt "一只可爱的猫" --image cat.png
 /canghe-danger-gemini-web --promptfiles system.md content.md --image out.png
 ```
+
+#### canghe-seedance-video
+
+使用字节跳动 Seedance 模型生成 AI 视频。支持文生视频和图生视频，提供多种模型选择。
+
+```bash
+# 文生视频
+/canghe-seedance-video create --prompt "小猫对着镜头打哈欠" --wait --download ~/Desktop
+
+# 从本地图片生成视频
+/canghe-seedance-video create --prompt "人物缓缓转头微笑" --image /path/to/photo.jpg --wait --download ~/Desktop
+
+# 首帧+末帧视频生成
+/canghe-seedance-video create --prompt "花朵从含苞到盛开" --image first.jpg --last-frame last.jpg --wait --download ~/Desktop
+
+# 自定义参数
+/canghe-seedance-video create --prompt "城市夜景延时摄影" --ratio 21:9 --duration 8 --resolution 1080p --wait --download ~/Desktop
+```
+
+**支持的模型**：
+- `doubao-seedance-1-5-pro-251215`（默认，支持音频）
+- `doubao-seedance-1-0-pro-250428`
+- `doubao-seedance-1-0-pro-fast-250528`
+- `doubao-seedance-1-0-lite-t2v-250219`（仅文生视频）
+- `doubao-seedance-1-0-lite-i2v-250219`（支持参考图片的图生视频）
 
 ### 工具技能 (Utility Skills)
 
@@ -783,6 +849,36 @@ AI 驱动的生成后端。
 #### skill-creator
 
 用于设计和迭代 agent skill 的方法论指南，强调精简 SKILL.md、渐进式加载，以及 scripts/references/assets 的清晰分层。
+
+#### canghe-volcengine-video-understanding
+
+火山视频理解 - 使用火山方舟视频理解 API 分析视频内容。通过 Files API 上传视频（推荐，最大 512MB），支持视频内容分析、物体识别、动作理解等。
+
+```bash
+# 基础视频分析
+/canghe-volcengine-video-understanding /path/to/video.mp4 "描述这个视频的内容"
+
+# 视频问答
+/canghe-volcengine-video-understanding /path/to/video.mp4 "视频中出现了哪些人物？"
+
+# 情感分析
+/canghe-volcengine-video-understanding /path/to/video.mp4 "分析视频中人物的情感变化"
+
+# 指定模型和帧率
+/canghe-volcengine-video-understanding /path/to/video.mp4 "总结视频要点" --model doubao-seed-2-0-pro-260215 --fps 2
+```
+
+**支持的模型**：
+- `doubao-seed-2-0-pro-260215`（默认）
+- `doubao-seed-2-0-lite-250728`
+- `doubao-seed-1-6-251015`
+
+**主要功能**：
+- 通过 Files API 上传最大 512MB 的视频
+- 视频内容分析、场景/人物/动作识别
+- 基于视频内容的问答
+- 自动生成视频描述和摘要
+- 文件存储 7 天可重复使用
 
 #### 技能来源与个人仓库建议
 

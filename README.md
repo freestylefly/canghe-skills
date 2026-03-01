@@ -53,9 +53,9 @@ Simply tell Claude Code:
 
 | Plugin | Description | Skills |
 |--------|-------------|--------|
-| **content-skills** | Content generation and publishing | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat) |
-| **ai-generation-skills** | AI-powered generation backends | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web) |
-| **utility-skills** | Utility tools for content processing | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator) |
+| **content-skills** | Content generation and publishing | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat), [manga-drama](#canghe-manga-drama), [manga-style-video](#canghe-manga-style-video) |
+| **ai-generation-skills** | AI-powered generation backends | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video) |
+| **utility-skills** | Utility tools for content processing | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding) |
 
 ## Update Skills
 
@@ -558,6 +558,47 @@ To obtain credentials:
 
 **Browser Method** (no API setup needed): Requires Google Chrome. First run opens browser for QR code login (session preserved).
 
+#### canghe-manga-drama
+
+Manga drama generator - creates comic-style short dramas based on Seedance. Supports automatic storyboard script generation with a character image as the base.
+
+```bash
+# Generate manga drama with character image
+/canghe-manga-drama generate --image /path/to/character.png --theme "campus life" --scenes 3
+
+# From custom script
+/canghe-manga-drama from-script --script my_drama.json --image /path/to/character.png
+```
+
+**Built-in Scene Types**: `introduction` (character entry), `action` (action scene), `emotion` (emotion expression), `interaction` (interaction scene), `ending` (closing shot)
+
+#### canghe-manga-style-video
+
+Manga-style video generator - specialized in generating anime-style animated videos. 8 built-in manga style templates, supports image-to-video.
+
+```bash
+# Basic generation with Japanese style
+/canghe-manga-style-video "A girl reading under cherry blossoms"
+
+# Specify style
+/canghe-manga-style-video "Landscape painting" --style chinese
+/canghe-manga-style-video "Cute animals" --style cartoon
+/canghe-manga-style-video "Rural scenery" --style ghibli
+
+# With reference image
+/canghe-manga-style-video "Grandma making dumplings" --style japanese --image ~/Desktop/character.png
+```
+
+**8 Manga Styles**:
+- `japanese` - Japanese healing style (default)
+- `ghibli` - Studio Ghibli style
+- `chinese` - Chinese ink wash style
+- `cartoon` - American cartoon style
+- `sketch` - Pencil sketch
+- `watercolor` - Watercolor hand-drawn
+- `manga_comic` - Japanese manga
+- `chibi` - Q-style cute
+
 ### AI Generation Skills
 
 AI-powered generation backends.
@@ -634,6 +675,31 @@ Interacts with Gemini Web to generate text and images.
 /canghe-danger-gemini-web --prompt "A cute cat" --image cat.png
 /canghe-danger-gemini-web --promptfiles system.md content.md --image out.png
 ```
+
+#### canghe-seedance-video
+
+Generate AI videos using ByteDance Seedance. Supports text-to-video and image-to-video, with multiple model options.
+
+```bash
+# Text-to-video
+/canghe-seedance-video create --prompt "A cute cat yawning at the camera" --wait --download ~/Desktop
+
+# Image-to-video from local file
+/canghe-seedance-video create --prompt "Character slowly turns head and smiles" --image /path/to/photo.jpg --wait --download ~/Desktop
+
+# First + last frame
+/canghe-seedance-video create --prompt "Flower blooms from bud to full blossom" --image first.jpg --last-frame last.jpg --wait --download ~/Desktop
+
+# Custom parameters
+/canghe-seedance-video create --prompt "City nightscape timelapse" --ratio 21:9 --duration 8 --resolution 1080p --wait --download ~/Desktop
+```
+
+**Supported Models**:
+- `doubao-seedance-1-5-pro-251215` (default, with audio)
+- `doubao-seedance-1-0-pro-250428`
+- `doubao-seedance-1-0-pro-fast-250528`
+- `doubao-seedance-1-0-lite-t2v-250219` (text-to-video only)
+- `doubao-seedance-1-0-lite-i2v-250219` (image-to-video with reference images)
 
 ### Utility Skills
 
@@ -783,6 +849,36 @@ A rule-driven reference set for building Remotion videos in React, with patterns
 #### skill-creator
 
 Methodology for designing and iterating skills: compact SKILL.md writing, progressive-loading structure, and clean separation of scripts, references, and assets.
+
+#### canghe-volcengine-video-understanding
+
+Volcengine video understanding - analyzes video content using Volcengine Ark video understanding API. Uploads videos via Files API (recommended, up to 512MB), supports video content analysis, object recognition, action understanding, etc.
+
+```bash
+# Basic video analysis
+/canghe-volcengine-video-understanding /path/to/video.mp4 "Describe the content of this video"
+
+# Video Q&A
+/canghe-volcengine-video-understanding /path/to/video.mp4 "What characters appear in the video?"
+
+# Emotion analysis
+/canghe-volcengine-video-understanding /path/to/video.mp4 "Analyze the emotional changes of the characters in the video"
+
+# Specify model and FPS
+/canghe-volcengine-video-understanding /path/to/video.mp4 "Summarize the key points of the video" --model doubao-seed-2-0-pro-260215 --fps 2
+```
+
+**Supported Models**:
+- `doubao-seed-2-0-pro-260215` (default)
+- `doubao-seed-2-0-lite-250728`
+- `doubao-seed-1-6-251015`
+
+**Key Features**:
+- Upload videos up to 512MB via Files API
+- Video content analysis, scene/character/action recognition
+- Video Q&A based on content
+- Automatic video description and summary generation
+- Files stored for 7 days for reuse
 
 #### Skill Provenance and Personal Repos
 

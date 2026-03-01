@@ -2,6 +2,17 @@
 
 [English](./CHANGELOG.md) | 中文
 
+## 1.35.0 - 2026-03-01
+
+### 新功能
+- `canghe-manga-drama`：新增漫剧生成器 - 基于 Seedance 的漫画风格短剧生成工具，支持以主角图片为基础自动生成漫剧分镜脚本
+- `canghe-manga-style-video`：新增漫画风格视频生成器 - 专门生成日式治愈系、国风水墨、美式卡通等漫画风格的动画视频，内置 8 种漫画风格模板
+- `canghe-seedance-video`：新增 Seedance 视频生成技能 - 使用字节跳动 Seedance 模型进行文生视频和图生视频，支持多种模型选择
+- `canghe-volcengine-video-understanding`：新增火山视频理解技能 - 使用火山方舟视频理解 API 分析视频内容，支持最大 512MB 的视频上传
+
+### 文档
+- `README.md`、`README.zh.md`：新增 4 个新技能的文档
+
 ## 1.34.1 - 2026-02-20
 
 ### 修复
