@@ -65,7 +65,7 @@ First-time setup: [references/config/first-time-setup.md](references/config/firs
 ```md
 default_theme: default
 default_publish_method: api
-default_author: 苍何
+default_author: 苏耀勇
 need_open_comment: 1
 only_fans_can_comment: 0
 chrome_profile_path: /path/to/chrome/profile
