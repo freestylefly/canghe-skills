@@ -54,8 +54,8 @@ npx skills add freestylefly/canghe-skills
 | 插件 | 说明 | 包含技能 |
 |------|------|----------|
 | **content-skills** | 内容生成和发布 | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat), [manga-drama](#canghe-manga-drama), [manga-style-video](#canghe-manga-style-video) |
-| **ai-generation-skills** | AI 生成后端 | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video) |
-| **utility-skills** | 内容处理工具 | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding) |
+| **ai-generation-skills** | AI 生成后端 | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video), [flyworks-avatar-video](#flyworks-avatar-video) |
+| **utility-skills** | 内容处理工具 | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding), [douyin-downloader](#canghe-douyin-downloader), [paddleocr-doc-parsing](#paddleocr-doc-parsing) |
 
 ## 更新技能
 
@@ -718,6 +718,27 @@ AI 驱动的生成后端。
 - `doubao-seedance-1-0-lite-t2v-250219`（仅文生视频）
 - `doubao-seedance-1-0-lite-i2v-250219`（支持参考图片的图生视频）
 
+#### flyworks-avatar-video
+
+使用飞影（HiFly）数字人生成视频。支持从图片生成说话视频、使用公共数字人+TTS、或克隆声音。
+
+```bash
+# 使用公共数字人+TTS生成视频
+/flyworks-avatar-video create_video --type tts --text "你好世界" --avatar "avatar_id" --voice "voice_id"
+
+# 从图片生成说话视频
+/flyworks-avatar-video create_talking_photo --image photo.png --title "我的数字人"
+
+# 克隆声音
+/flyworks-avatar-video clone_voice --audio audio.mp3 --title "我的声音"
+
+# 查看可用数字人/声音
+/flyworks-avatar-video list_public_avatars
+/flyworks-avatar-video list_public_voices
+```
+
+**API Token**：内置免费 token（带水印，限 30 秒）。设置 `HIFLY_API_TOKEN` 可解锁完整功能。
+
 ### 工具技能 (Utility Skills)
 
 内容处理工具。
@@ -896,6 +917,53 @@ AI 驱动的生成后端。
 - 基于视频内容的问答
 - 自动生成视频描述和摘要
 - 文件存储 7 天可重复使用
+
+#### canghe-douyin-downloader
+
+抖音无水印视频下载和文案提取工具。支持下载无水印视频和语音转文字文案提取。
+
+```bash
+# 获取视频信息
+/canghe-douyin-downloader info "抖音分享链接"
+
+# 下载视频
+/canghe-douyin-downloader download "抖音链接" -o ./videos
+
+# 提取文案（需要 API Key）
+/canghe-douyin-downloader extract "抖音链接" -o ./output
+```
+
+**环境变量**：
+| 变量 | 说明 |
+|------|------|
+| `DOUYIN_API_KEY` | 硅基流动 API 密钥（用于语音转文字） |
+
+**依赖**：`ffmpeg`
+
+#### paddleocr-doc-parsing
+
+基于 PaddleOCR 的高级文档解析。提取完整文档结构，包括文字、表格、公式、图表和版面信息。
+
+```bash
+# 从 URL 解析
+/paddleocr-doc-parsing --file-url "https://example.com/doc.pdf" --pretty
+
+# 解析本地文件
+/paddleocr-doc-parsing --file-path "document.pdf" --pretty
+
+# 指定文件类型
+/paddleocr-doc-parsing --file-url "URL" --file-type 0 --pretty
+```
+
+**文件类型**：`0`（PDF）、`1`（图片），或自动检测
+
+**环境变量**：
+| 变量 | 说明 |
+|------|------|
+| `PADDLEOCR_DOC_PARSING_API_URL` | PaddleOCR API 端点 |
+| `PADDLEOCR_ACCESS_TOKEN` | API 访问令牌 |
+
+**依赖**：`python`
 
 #### 技能来源与个人仓库建议
 

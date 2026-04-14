@@ -35,7 +35,8 @@
       "skills": [
         "./skills/canghe-danger-gemini-web",
         "./skills/canghe-image-gen",
-        "./skills/canghe-seedance-video"
+        "./skills/canghe-seedance-video",
+        "./skills/flyworks-avatar-video-1.0.0"
       ]
     },
     {
@@ -50,7 +51,9 @@
         "./skills/canghe-format-markdown",
         "./skills/canghe-markdown-to-html",
         "./skills/canghe-wechat-article-extractor",
-        "./skills/canghe-volcengine-video-understanding"
+        "./skills/canghe-volcengine-video-understanding",
+        "./skills/canghe-douyin-downloader",
+        "./skills/paddleocr-doc-parsing"
       ]
     }
   ]

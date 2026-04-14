@@ -54,8 +54,8 @@ Simply tell Claude Code:
 | Plugin | Description | Skills |
 |--------|-------------|--------|
 | **content-skills** | Content generation and publishing | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat), [manga-drama](#canghe-manga-drama), [manga-style-video](#canghe-manga-style-video) |
-| **ai-generation-skills** | AI-powered generation backends | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video) |
-| **utility-skills** | Utility tools for content processing | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding) |
+| **ai-generation-skills** | AI-powered generation backends | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video), [flyworks-avatar-video](#flyworks-avatar-video) |
+| **utility-skills** | Utility tools for content processing | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding), [douyin-downloader](#canghe-douyin-downloader), [paddleocr-doc-parsing](#paddleocr-doc-parsing) |
 
 ## Update Skills
 
@@ -600,46 +600,7 @@ To obtain credentials:
 
 **Browser Method** (no API setup needed): Requires Google Chrome. First run opens browser for QR code login (session preserved).
 
-#### canghe-manga-drama
 
-Manga drama generator - creates comic-style short dramas based on Seedance. Supports automatic storyboard script generation with a character image as the base.
-
-```bash
-# Generate manga drama with character image
-/canghe-manga-drama generate --image /path/to/character.png --theme "campus life" --scenes 3
-
-# From custom script
-/canghe-manga-drama from-script --script my_drama.json --image /path/to/character.png
-```
-
-**Built-in Scene Types**: `introduction` (character entry), `action` (action scene), `emotion` (emotion expression), `interaction` (interaction scene), `ending` (closing shot)
-
-#### canghe-manga-style-video
-
-Manga-style video generator - specialized in generating anime-style animated videos. 8 built-in manga style templates, supports image-to-video.
-
-```bash
-# Basic generation with Japanese style
-/canghe-manga-style-video "A girl reading under cherry blossoms"
-
-# Specify style
-/canghe-manga-style-video "Landscape painting" --style chinese
-/canghe-manga-style-video "Cute animals" --style cartoon
-/canghe-manga-style-video "Rural scenery" --style ghibli
-
-# With reference image
-/canghe-manga-style-video "Grandma making dumplings" --style japanese --image ~/Desktop/character.png
-```
-
-**8 Manga Styles**:
-- `japanese` - Japanese healing style (default)
-- `ghibli` - Studio Ghibli style
-- `chinese` - Chinese ink wash style
-- `cartoon` - American cartoon style
-- `sketch` - Pencil sketch
-- `watercolor` - Watercolor hand-drawn
-- `manga_comic` - Japanese manga
-- `chibi` - Q-style cute
 
 ### AI Generation Skills
 
@@ -742,6 +703,27 @@ Generate AI videos using ByteDance Seedance. Supports text-to-video and image-to
 - `doubao-seedance-1-0-pro-fast-250528`
 - `doubao-seedance-1-0-lite-t2v-250219` (text-to-video only)
 - `doubao-seedance-1-0-lite-i2v-250219` (image-to-video with reference images)
+
+#### flyworks-avatar-video
+
+Generate videos using Flyworks (HiFly) Digital Humans. Create talking photo videos from images, use public avatars with TTS, or clone voices.
+
+```bash
+# Create video with public avatar (TTS)
+/flyworks-avatar-video create_video --type tts --text "Hello world" --avatar "avatar_id" --voice "voice_id"
+
+# Create talking photo video
+/flyworks-avatar-video create_talking_photo --image photo.png --title "My Avatar"
+
+# Clone a voice
+/flyworks-avatar-video clone_voice --audio audio.mp3 --title "My Voice"
+
+# List available avatars/voices
+/flyworks-avatar-video list_public_avatars
+/flyworks-avatar-video list_public_voices
+```
+
+**API Token**: Default free-tier token included (with watermark, 30s limit). Set `HIFLY_API_TOKEN` for unlimited access.
 
 ### Utility Skills
 
@@ -921,6 +903,53 @@ Volcengine video understanding - analyzes video content using Volcengine Ark vid
 - Video Q&A based on content
 - Automatic video description and summary generation
 - Files stored for 7 days for reuse
+
+#### canghe-douyin-downloader
+
+Douyin (TikTok China) video downloader and transcript extractor. Downloads watermark-free videos and extracts speech-to-text transcripts.
+
+```bash
+# Get video info
+/canghe-douyin-downloader info "抖音分享链接"
+
+# Download video
+/canghe-douyin-downloader download "抖音链接" -o ./videos
+
+# Extract transcript (requires API Key)
+/canghe-douyin-downloader extract "抖音链接" -o ./output
+```
+
+**Environment Variables**:
+| Variable | Description |
+|----------|-------------|
+| `DOUYIN_API_KEY` | SiliconFlow API key for speech-to-text |
+
+**Requirements**: `ffmpeg`
+
+#### paddleocr-doc-parsing
+
+Advanced document parsing with PaddleOCR. Extracts complete document structure including text, tables, formulas, charts, and layout information.
+
+```bash
+# Parse from URL
+/paddleocr-doc-parsing --file-url "https://example.com/doc.pdf" --pretty
+
+# Parse local file
+/paddleocr-doc-parsing --file-path "document.pdf" --pretty
+
+# Specify file type
+/paddleocr-doc-parsing --file-url "URL" --file-type 0 --pretty
+```
+
+**File Types**: `0` (PDF), `1` (image), or auto-detected
+
+**Environment Variables**:
+| Variable | Description |
+|----------|-------------|
+| `PADDLEOCR_DOC_PARSING_API_URL` | PaddleOCR API endpoint |
+| `PADDLEOCR_ACCESS_TOKEN` | API access token |
+
+**Requirements**: `python`
 
 #### Skill Provenance and Personal Repos
 
