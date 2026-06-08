@@ -40,6 +40,7 @@ Run the following command in Claude Code:
 # Install specific plugin
 /plugin install content-skills@canghe-skills
 /plugin install ai-generation-skills@canghe-skills
+/plugin install business-intelligence-skills@canghe-skills
 /plugin install utility-skills@canghe-skills
 ```
 
@@ -55,6 +56,7 @@ Simply tell Claude Code:
 |--------|-------------|--------|
 | **content-skills** | Content generation and publishing | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat), [manga-drama](#canghe-manga-drama), [manga-style-video](#canghe-manga-style-video) |
 | **ai-generation-skills** | AI-powered generation backends | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video), [flyworks-avatar-video](#flyworks-avatar-video) |
+| **business-intelligence-skills** | Business research and company intelligence | [tianyancha](#canghe-tianyancha) |
 | **utility-skills** | Utility tools for content processing | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding), [douyin-downloader](#canghe-douyin-downloader), [paddleocr-doc-parsing](#paddleocr-doc-parsing) |
 
 ## Update Skills
@@ -724,6 +726,24 @@ Generate videos using Flyworks (HiFly) Digital Humans. Create talking photo vide
 ```
 
 **API Token**: Default free-tier token included (with watermark, 30s limit). Set `HIFLY_API_TOKEN` for unlimited access.
+
+### Business Intelligence Skills
+
+Business research, company intelligence, and dashboard skills.
+
+#### canghe-tianyancha
+
+Generate Tianyancha-style company and industry insight dashboards from researched enterprise data. It organizes company profiles, hiring analysis, legal risks, financing history, shareholders, intellectual property, investments, and key people into single-file HTML dashboards.
+
+```bash
+# Company dashboard
+/canghe-tianyancha "Analyze Moonshot AI and generate a company dashboard"
+
+# Industry dashboard
+/canghe-tianyancha "Analyze leading AI model companies and generate an industry dashboard"
+```
+
+**Outputs**: single-company dashboards, industry dashboards, or an industry dashboard linked to multiple company dashboards.
 
 ### Utility Skills
 

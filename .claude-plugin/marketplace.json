@@ -40,6 +40,15 @@
       ]
     },
     {
+      "name": "business-intelligence-skills",
+      "description": "Business research, company intelligence, and dashboard skills",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/canghe-tianyancha"
+      ]
+    },
+    {
       "name": "utility-skills",
       "description": "Utility tools for content processing",
       "source": "./",

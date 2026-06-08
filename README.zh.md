@@ -40,6 +40,7 @@ npx skills add freestylefly/canghe-skills
 # 安装指定插件
 /plugin install content-skills@canghe-skills
 /plugin install ai-generation-skills@canghe-skills
+/plugin install business-intelligence-skills@canghe-skills
 /plugin install utility-skills@canghe-skills
 ```
 
@@ -55,6 +56,7 @@ npx skills add freestylefly/canghe-skills
 |------|------|----------|
 | **content-skills** | 内容生成和发布 | [xhs-images](#canghe-xhs-images), [infographic](#canghe-infographic), [cover-image](#canghe-cover-image), [slide-deck](#canghe-slide-deck), [comic](#canghe-comic), [article-illustrator](#canghe-article-illustrator), [post-to-x](#canghe-post-to-x), [post-to-wechat](#canghe-post-to-wechat), [manga-drama](#canghe-manga-drama), [manga-style-video](#canghe-manga-style-video) |
 | **ai-generation-skills** | AI 生成后端 | [image-gen](#canghe-image-gen), [danger-gemini-web](#canghe-danger-gemini-web), [seedance-video](#canghe-seedance-video), [flyworks-avatar-video](#flyworks-avatar-video) |
+| **business-intelligence-skills** | 商业研究和企业洞察 | [tianyancha](#canghe-tianyancha) |
 | **utility-skills** | 内容处理工具 | [url-to-markdown](#canghe-url-to-markdown), [danger-x-to-markdown](#canghe-danger-x-to-markdown), [compress-image](#canghe-compress-image), [format-markdown](#canghe-format-markdown), [wechat-article-extractor](#canghe-wechat-article-extractor), [markdown-to-html](#canghe-markdown-to-html), [find-skills](#find-skills), [obsidian-skills](#obsidian-skills), [obsidian-bases](#obsidian-bases), [obsidian-markdown](#obsidian-markdown), [remotion-best-practices](#remotion-best-practices), [skill-creator](#skill-creator), [volcengine-video-understanding](#canghe-volcengine-video-understanding), [douyin-downloader](#canghe-douyin-downloader), [paddleocr-doc-parsing](#paddleocr-doc-parsing) |
 
 ## 更新技能
@@ -738,6 +740,24 @@ AI 驱动的生成后端。
 ```
 
 **API Token**：内置免费 token（带水印，限 30 秒）。设置 `HIFLY_API_TOKEN` 可解锁完整功能。
+
+### 商业智能技能 (Business Intelligence Skills)
+
+商业研究、企业洞察和看板生成技能。
+
+#### canghe-tianyancha
+
+根据检索到的企业数据生成天眼查风格的企业和行业洞察看板。支持把企业概况、在招岗位分析、司法风险、融资历史、股东结构、知识产权、对外投资和主要人员整理为单文件 HTML 看板。
+
+```bash
+# 单企业看板
+/canghe-tianyancha "分析月之暗面的企业情况，生成企业看板"
+
+# 行业看板
+/canghe-tianyancha "分析 AI 大模型行业头部企业，生成行业洞察看板"
+```
+
+**输出**：单企业看板、行业看板，或一个行业看板链接多个企业看板。
 
 ### 工具技能 (Utility Skills)
 
