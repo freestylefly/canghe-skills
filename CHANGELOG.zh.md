@@ -2,6 +2,14 @@
 
 [English](./CHANGELOG.md) | 中文
 
+## 1.37.0 - 2026-06-08
+
+### 新功能
+- `canghe-tianyancha`：新增天眼查风格企业与行业洞察看板技能，支持整理企业概况、在招岗位分析、司法风险、融资历史、股东结构、知识产权、对外投资和主要人员。
+
+### 文档
+- `README.md`、`README.zh.md`：新增 `business-intelligence-skills` 插件分类和 `canghe-tianyancha` 使用示例。
+
 ## 1.36.0 - 2026-03-01
 
 ### 重构

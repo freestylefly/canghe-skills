@@ -2,6 +2,14 @@
 
 English | [中文](./CHANGELOG.zh.md)
 
+## 1.37.0 - 2026-06-08
+
+### Features
+- `canghe-tianyancha`: add Tianyancha-style company and industry intelligence dashboard skill for enterprise profiles, hiring analysis, legal risk, financing, shareholders, intellectual property, investments, and key people.
+
+### Documentation
+- `README.md`, `README.zh.md`: add the new `business-intelligence-skills` plugin category and `canghe-tianyancha` usage examples.
+
 ## 1.36.0 - 2026-03-01
 
 ### Refactor
