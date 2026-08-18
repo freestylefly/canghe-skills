@@ -27,7 +27,6 @@ except ImportError:
 load_env()
 
 # 默认配置
-DEFAULT_MODEL = "doubao-seedance-1-5-pro-251215"
 DEFAULT_RATIO = "9:16"  # 漫剧常用竖屏
 DEFAULT_RESOLUTION = "1080p"
 DEFAULT_DURATION = 5  # 每个分镜5秒
@@ -132,9 +131,10 @@ def create_drama_script(
 def generate_scene_video(
     scene: Dict,
     character_image: str,
-    model: str = DEFAULT_MODEL,
+    model: Optional[str] = None,
     output_dir: str = "~/Desktop",
-    send_feishu: bool = False
+    send_feishu: bool = False,
+    provider: str = "volcengine"
 ) -> str:
     """
     生成分镜视频
@@ -166,7 +166,8 @@ def generate_scene_video(
         ratio=scene['ratio'],
         resolution=scene['resolution'],
         output_dir=output_dir,
-        send_feishu=send_feishu
+        send_feishu=send_feishu,
+        provider=provider
     )
     
     return video_path
@@ -176,7 +177,9 @@ def generate_drama(
     script_file: str,
     character_image: str,
     output_dir: str = "~/Desktop",
-    send_feishu: bool = False
+    send_feishu: bool = False,
+    provider: str = "volcengine",
+    model: Optional[str] = None
 ) -> List[str]:
     """
     根据脚本生成完整漫剧
@@ -214,8 +217,10 @@ def generate_drama(
             video_path = generate_scene_video(
                 scene=scene,
                 character_image=character_image,
+                model=model,
                 output_dir=str(drama_dir),
-                send_feishu=send_feishu
+                send_feishu=send_feishu,
+                provider=provider
             )
             video_files.append(video_path)
         except Exception as e:
@@ -235,7 +240,9 @@ def quick_generate(
     theme: str,
     num_scenes: int = 3,
     output_dir: str = "~/Desktop",
-    send_feishu: bool = False
+    send_feishu: bool = False,
+    provider: str = "volcengine",
+    model: Optional[str] = None
 ) -> List[str]:
     """
     快速生成漫剧 - 自动创建脚本并生成
@@ -320,7 +327,9 @@ def quick_generate(
         script_file=str(script_file),
         character_image=character_image,
         output_dir=output_dir,
-        send_feishu=send_feishu
+        send_feishu=send_feishu,
+        provider=provider,
+        model=model
     )
 
 
@@ -350,6 +359,9 @@ def main():
     p_generate.add_argument("--scenes", "-n", type=int, default=3, help="分镜数量（默认3）")
     p_generate.add_argument("--output", "-o", default="~/Desktop", help="输出目录")
     p_generate.add_argument("--send-feishu", action="store_true", help="发送到飞书")
+    p_generate.add_argument("--provider", choices=["volcengine", "atlas"], default="volcengine",
+                            help="视频生成 provider（默认: volcengine）")
+    p_generate.add_argument("--model", help="覆盖 provider 的默认模型 ID")
     
     # from-script - 根据脚本生成
     p_from_script = subparsers.add_parser("from-script", help="根据脚本生成漫剧")
@@ -357,6 +369,9 @@ def main():
     p_from_script.add_argument("--image", "-i", required=True, help="主角图片路径")
     p_from_script.add_argument("--output", "-o", default="~/Desktop", help="输出目录")
     p_from_script.add_argument("--send-feishu", action="store_true", help="发送到飞书")
+    p_from_script.add_argument("--provider", choices=["volcengine", "atlas"], default="volcengine",
+                               help="视频生成 provider（默认: volcengine）")
+    p_from_script.add_argument("--model", help="覆盖 provider 的默认模型 ID")
     
     # create-script - 创建脚本模板
     p_create = subparsers.add_parser("create-script", help="创建脚本模板")
@@ -371,8 +386,9 @@ def main():
         parser.print_help()
         sys.exit(1)
     
-    # 设置 API Key
-    require_env_key("ARK_API_KEY")
+    if args.command != "create-script":
+        key_name = "ATLASCLOUD_API_KEY" if args.provider == "atlas" else "ARK_API_KEY"
+        require_env_key(key_name)
     
     try:
         if args.command == "generate":
@@ -382,7 +398,9 @@ def main():
                 theme=args.theme,
                 num_scenes=args.scenes,
                 output_dir=args.output,
-                send_feishu=args.send_feishu
+                send_feishu=args.send_feishu,
+                provider=args.provider,
+                model=args.model
             )
             print(f"\n🎉 漫剧生成完成! 共 {len(video_files)} 个视频")
             for i, vf in enumerate(video_files, 1):
@@ -394,7 +412,9 @@ def main():
                 script_file=args.script,
                 character_image=args.image,
                 output_dir=args.output,
-                send_feishu=args.send_feishu
+                send_feishu=args.send_feishu,
+                provider=args.provider,
+                model=args.model
             )
             print(f"\n🎉 漫剧生成完成! 共 {len(video_files)} 个视频")
         
