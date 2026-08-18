@@ -17,7 +17,12 @@ description: 漫剧生成器 - 基于 Seedance 的漫画风格短剧生成工具
 
 ## 前置要求
 
-需要设置 `ARK_API_KEY` 环境变量。
+选择一个视频生成 provider 并设置对应环境变量：
+
+| Provider | 环境变量 | 默认模型 |
+|----------|----------|----------|
+| `volcengine`（默认） | `ARK_API_KEY` | `doubao-seedance-1-5-pro-251215` |
+| `atlas` | `ATLASCLOUD_API_KEY` | `bytedance/seedance-2.5/image-to-video` |
 
 ### 配置方式（推荐）
 
@@ -35,6 +40,12 @@ ARK_API_KEY=your-actual-api-key-here
 
 ```bash
 export ARK_API_KEY="your-api-key"
+```
+
+使用 Atlas Cloud 时：
+
+```bash
+export ATLASCLOUD_API_KEY="your-api-key"
 ```
 
 ### 加载优先级
@@ -60,6 +71,16 @@ python3 scripts/manga_drama.py generate \
   --theme "校园日常" \
   --scenes 3 \
   --send-feishu
+```
+
+Atlas Cloud 是可选 provider，不改变默认的火山方舟流程：
+
+```bash
+python3 scripts/manga_drama.py generate \
+  --image /path/to/character.png \
+  --theme "校园日常" \
+  --scenes 3 \
+  --provider atlas
 ```
 
 ### 2. 根据脚本生成漫剧
@@ -126,6 +147,8 @@ python3 scripts/manga_drama.py from-script \
 | `--scenes` | ❌ | 分镜数量（默认3） |
 | `--output` | ❌ | 输出目录（默认~/Desktop） |
 | `--send-feishu` | ❌ | 发送到飞书 |
+| `--provider` | ❌ | `volcengine`（默认）或 `atlas` |
+| `--model` | ❌ | 覆盖所选 provider 的默认模型 ID |
 
 ### from-script 命令
 
@@ -134,6 +157,8 @@ python3 scripts/manga_drama.py from-script \
 | `--script` | ✅ | 脚本文件路径 |
 | `--image` | ✅ | 主角图片路径 |
 | `--send-feishu` | ❌ | 发送到飞书 |
+| `--provider` | ❌ | `volcengine`（默认）或 `atlas` |
+| `--model` | ❌ | 覆盖所选 provider 的默认模型 ID |
 
 ### create-script 命令
 
@@ -196,6 +221,8 @@ python3 scripts/manga_drama.py from-script \
 3. 每个分镜 → 调用 Seedance 图生视频
 4. 可选 → 发送到飞书
 ```
+
+Atlas Cloud provider 会将本地主角图片作为首帧传入，并使用图片本身的宽高比。任务提交只执行一次，状态查询采用有界退避，最长等待 10 分钟。
 
 ### 视频规格
 
